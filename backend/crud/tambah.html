@@ -213,83 +213,27 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h5>Basic Component</h5>
+                    <h5>Tambah Konten</h5>
                 </div>
                 <div class="card-body">
-                    <h5>Form controls</h5>
-                    <hr>
                     <div class="row">
-                        <div class="col-md-6">
-                            <form>
+                        <div class="col-md-12">
+                            <div class="msg mb-4"></div>
+                            <form id="insertForm">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <label>Judul</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                <div class="form-group">
+                                    <label>Category ID</label>
+                                    <input type="number" name="category_id" class="form-control" placeholder="Text">
                                 </div>
                                 <button type="submit" class="btn  btn-primary">Submit</button>
                             </form>
-                        </div>
-                        <div class="col-md-6">
-                            <form>
-                                <div class="form-group">
-                                    <label>Text</label>
-                                    <input type="text" class="form-control" placeholder="Text">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Example select</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="mt-5">Radios</h5>
-                            <hr>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
-                            </div>
-                            <h5 class="mt-5">Inline</h5>
-                            <hr>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="customRange1">Example range</label>
-                            <input type="range" class="custom-range" id="customRange1">
-                            <label for="customRange2">Example range</label>
-                            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
-                            <label for="customRange3">Example range</label>
-                            <input type="range" class="custom-range" min="0" max="5" step="0.5" id="customRange3">
                         </div>
                     </div>
                 </div>
@@ -299,6 +243,15 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
+<script>
+    fetch('api/post/posts.php')
+    .then(response => {
+        console.log(response);
+    })
+    // .then(data => {
+    //     console.log(data);
+    // })
+</script>
     <!-- Required Js -->
     <script src="../assets/js/vendor-all.min.js"></script>
     <script src="../assets/js/plugins/bootstrap.min.js"></script>

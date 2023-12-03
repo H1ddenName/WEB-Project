@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Selamat Data di Website Qori</title>
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+	
+
+
+</head>
+
+<!-- [ auth-signin ] start -->
+<div class="auth-wrapper">
+	<div class="auth-content">
+		<div class="card">
+			<div class="row align-items-center text-center">
+				<div class="col-md-12">
+					<div class="card-body">
+						<img src="assets/images/sttblogo.png" alt="" class="img-fluid mb-4">
+						<h4 class="mb-3 f-w-400">Halaman Login</h4>
+						<div class="form-group mb-3">
+							<label class="floating-label" for="username"></label>
+							<input type="text" class="form-control" id="username" name="username" onchange="validateLogin(this.value, document.getElementById('password').value)" placeholder="Input Username">
+						</div>
+						<div class="form-group mb-4">
+							<label class="floating-label" for="Password"></label>
+							<input type="password" class="form-control" id="password" name="password" onchange="validateLogin(document.getElementById('username').value, this.value)" placeholder="Input Password">
+						</div>
+						<div class="custom-control custom-checkbox text-left mb-4 mt-2">
+							<input type="checkbox" class="custom-control-input" id="customCheck1">
+							<label class="custom-control-label" for="customCheck1">Save credentials.</label>
+						</div>
+						<a href="frontend/index.html"><button class="btn btn-block btn-primary mb-4">Signin</button></a>
+						<p class="mb-0 text-muted">Belum Punya Akun? <a href="backend/auth/auth-signup.html" class="f-w-400">Register</a></p>
+            <br>
+            <p class="mb-2">&copy; Copyright by 21552011060_Qori_PP21</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- [ auth-signin ] end -->
+<script>
+function validateLogin(username, password) {
+  // Cek jika username tidak kosong
+  if (username === "") {
+    alert("Username tidak boleh kosong");
+    return false;
+  }
+
+  // Cek jika password tidak kosong
+  if (password === "") {
+    alert("Password tidak boleh kosong");
+    return false;
+  }
+
+  // Cek jika username dan password valid
+  if (!validateUsername(username) || !validatePassword(password)) {
+    return false;
+  }
+
+  // Login berhasil
+  return true;
+}
+
+function validateUsername(username) {
+  // Cek jika username hanya terdiri dari huruf dan angka
+  if (!/^[a-zA-Z0-9]+$/.test(username)) {
+    return false;
+  }
+
+  // Cek jika panjang username minimal 5 karakter
+  if (username.length < 5) {
+    return false;
+  }
+
+  // Cek jika panjang username maksimal 20 karakter
+  if (username.length > 20) {
+    return false;
+  }
+
+  // Username valid
+  return true;
+}
+
+function validatePassword(password) {
+  // Cek jika password memiliki setidaknya 8 karakter
+  if (password.length < 8) {
+    return false;
+  }
+
+  // Cek jika password mengandung setidaknya satu huruf besar
+  if (!/[A-Z]/.test(password)) {
+    return false;
+  }
+
+  // Cek jika password mengandung setidaknya satu angka
+  if (!/[0-9]/.test(password)) {
+    return false;
+  }
+
+  // Password valid
+  return true;
+}
+
+</script>
+
+<!-- Required Js -->
+<script src="assets/js/vendor-all.min.js"></script>
+<script src="assets/js/plugins/bootstrap.min.js"></script>
+<script src="assets/js/ripple.js"></script>
+
+
+
+</body>
+
+</html>
