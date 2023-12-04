@@ -39,20 +39,24 @@
 						<h4 class="mb-3 f-w-400">Halaman Register</h4>
 						<div class="form-group mb-3">
 							<label class="floating-label" for="Username"></label>
-							<input type="text" class="form-control" id="Username" placeholder="Username">
+							<input type="text" class="form-control" id="Username" name="username" placeholder="Username">
 						</div>
 						<div class="form-group mb-3">
 							<label class="floating-label" for="Email"></label>
-							<input type="text" class="form-control" id="Email" placeholder="Email address">
+							<input type="text" class="form-control" id="Email" name="email" placeholder="Email address">
 						</div>
 						<div class="form-group mb-4">
 							<label class="floating-label" for="Password"></label>
-							<input type="password" class="form-control" id="Password" placeholder="Password">
+							<input type="password" class="form-control" id="Password" name="password" placeholder="Password">
+						</div>
+						<div class="form-group mb-4">
+							<label class="floating-label" for="Password"></label>
+							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi Password">
 						</div>
 						<button class="btn btn-primary btn-block mb-4">Sign up</button>
 						<p class="mb-2">Sudah Punya Akun? <a href="index.html" class="f-w-400">Login</a></p>
 						<br>
-						<p class="mb-2">&copy; Copyright by 21552011060_Qori_PP21</a></p>
+						<p class="mb-2">&copy; Copyright by 21552011060_Qori_221PC</a></p>
 					</div>
 				</div>
 			</div>
@@ -61,68 +65,57 @@
 </div>
 <!-- [ auth-signup ] end -->
 <script>
-	function validateLogin(username, password) {
-	  // Cek jika username tidak kosong
-	  if (username === "") {
-		alert("Username tidak boleh kosong");
-		return false;
-	  }
-	
-	  // Cek jika password tidak kosong
-	  if (password === "") {
-		alert("Password tidak boleh kosong");
-		return false;
-	  }
-	
-	  // Cek jika username dan password valid
-	  if (!validateUsername(username) || !validatePassword(password)) {
-		return false;
-	  }
-	
-	  // Login berhasil
-	  return true;
+	function validateForm() {
+		var username = document.getElementById('username').value;
+		var email = document.getElementById('email').value;
+		var password = document.getElementById('password').value;
+		var confirmPassword = document.getElementById('confirmPassword').value;
+
+		var errors = [];
+
+		if (username === '') {
+			errors.push('User name is required.');
+		}
+
+		if (email === '') {
+			errors.push('Email is required.');
+		} else if (!/^\w+([\. -]?\w+)*@\w+([\. -]?\w+)*\.\w{2,}$/.test(email)) {
+			errors.push('Invalid email format.');
+		}
+
+		if (password === '') {
+			errors.push('Password is required.');
+		} else if (password.length < 8) {
+			errors.push('Password must be at least 8 characters long.');
+		}
+
+		if (confirmPassword === '') {
+			errors.push('Confirm password is required.');
+		} else if (confirmPassword !== password) {
+			errors.push('Passwords must match.');
+		}
+
+		if (errors.length > 0) {
+			alert(errors.join('\n'));
+			return false;
+		} else {
+			return true;
+		}
 	}
-	
-	function validateUsername(username) {
-	  // Cek jika username hanya terdiri dari huruf dan angka
-	  if (!/^[a-zA-Z0-9]+$/.test(username)) {
-		return false;
-	  }
-	
-	  // Cek jika panjang username minimal 5 karakter
-	  if (username.length < 5) {
-		return false;
-	  }
-	
-	  // Cek jika panjang username maksimal 20 karakter
-	  if (username.length > 20) {
-		return false;
-	  }
-	
-	  // Username valid
-	  return true;
+
+	function validatePassword() {
+		var password = document.getElementById('password').value;
+		var confirmPassword = document.getElementById('confirmPassword').value;
+
+		var errorElement = document.getElementById('confirmPasswordError');
+
+		if (confirmPassword !== password) {
+			errorElement.textContent = 'Passwords must match.';
+		} else {
+			errorElement.textContent = '';
+		}
 	}
-	
-	function validatePassword(password) {
-	  // Cek jika password memiliki setidaknya 8 karakter
-	  if (password.length < 8) {
-		return false;
-	  }
-	
-	  // Cek jika password mengandung setidaknya satu huruf besar
-	  if (!/[A-Z]/.test(password)) {
-		return false;
-	  }
-	
-	  // Cek jika password mengandung setidaknya satu angka
-	  if (!/[0-9]/.test(password)) {
-		return false;
-	  }
-	
-	  // Password valid
-	  return true;
-	}
-	</script>
+</script>
 
 <!-- Required Js -->
 <script src="assets/js/vendor-all.min.js"></script>
