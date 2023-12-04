@@ -60,6 +60,69 @@
 	</div>
 </div>
 <!-- [ auth-signup ] end -->
+<script>
+	function validateLogin(username, password) {
+	  // Cek jika username tidak kosong
+	  if (username === "") {
+		alert("Username tidak boleh kosong");
+		return false;
+	  }
+	
+	  // Cek jika password tidak kosong
+	  if (password === "") {
+		alert("Password tidak boleh kosong");
+		return false;
+	  }
+	
+	  // Cek jika username dan password valid
+	  if (!validateUsername(username) || !validatePassword(password)) {
+		return false;
+	  }
+	
+	  // Login berhasil
+	  return true;
+	}
+	
+	function validateUsername(username) {
+	  // Cek jika username hanya terdiri dari huruf dan angka
+	  if (!/^[a-zA-Z0-9]+$/.test(username)) {
+		return false;
+	  }
+	
+	  // Cek jika panjang username minimal 5 karakter
+	  if (username.length < 5) {
+		return false;
+	  }
+	
+	  // Cek jika panjang username maksimal 20 karakter
+	  if (username.length > 20) {
+		return false;
+	  }
+	
+	  // Username valid
+	  return true;
+	}
+	
+	function validatePassword(password) {
+	  // Cek jika password memiliki setidaknya 8 karakter
+	  if (password.length < 8) {
+		return false;
+	  }
+	
+	  // Cek jika password mengandung setidaknya satu huruf besar
+	  if (!/[A-Z]/.test(password)) {
+		return false;
+	  }
+	
+	  // Cek jika password mengandung setidaknya satu angka
+	  if (!/[0-9]/.test(password)) {
+		return false;
+	  }
+	
+	  // Password valid
+	  return true;
+	}
+	</script>
 
 <!-- Required Js -->
 <script src="assets/js/vendor-all.min.js"></script>
