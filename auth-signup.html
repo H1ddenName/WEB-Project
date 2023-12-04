@@ -39,19 +39,15 @@
 						<h4 class="mb-3 f-w-400">Halaman Register</h4>
 						<div class="form-group mb-3">
 							<label class="floating-label" for="Username"></label>
-							<input type="text" class="form-control" id="Username" name="username" placeholder="Username">
+							<input type="text" class="form-control" id="Username" name="username" onchange="validateLogin(this.value, document.getElementById('username').value)" placeholder="Username">
 						</div>
 						<div class="form-group mb-3">
 							<label class="floating-label" for="Email"></label>
-							<input type="text" class="form-control" id="Email" name="email" placeholder="Email address">
+							<input type="text" class="form-control" id="Email" name="email" onchange="validateEmail(this.value, document.getElementById('email').value)" placeholder="Email address">
 						</div>
 						<div class="form-group mb-4">
 							<label class="floating-label" for="Password"></label>
-							<input type="password" class="form-control" id="Password" name="password" placeholder="Password">
-						</div>
-						<div class="form-group mb-4">
-							<label class="floating-label" for="Password"></label>
-							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi Password">
+							<input type="password" class="form-control" id="Password" name="password" onchange="validatePassword(this.value, document.getElementById('password').value)" placeholder="Password">
 						</div>
 						<button class="btn btn-primary btn-block mb-4">Sign up</button>
 						<p class="mb-2">Sudah Punya Akun? <a href="index.html" class="f-w-400">Login</a></p>
@@ -65,56 +61,78 @@
 </div>
 <!-- [ auth-signup ] end -->
 <script>
-	function validateForm() {
-		var username = document.getElementById('username').value;
-		var email = document.getElementById('email').value;
-		var password = document.getElementById('password').value;
-		var confirmPassword = document.getElementById('confirmPassword').value;
+function validateLogin(username, email, password) {
+  // Cek jika username tidak kosong
+  if (username === "") {
+    alert("Username tidak boleh kosong");
+    return false;
+  }
 
-		var errors = [];
+  // Cek jika username tidak kosong
+  if (email === "") {
+    alert("E-Mail tidak boleh kosong");
+    return false;
+  }
 
-		if (username === '') {
-			errors.push('User name is required.');
-		}
+  // Cek jika password tidak kosong
+  if (password === "") {
+    alert("Password tidak boleh kosong");
+    return false;
+  }
 
-		if (email === '') {
-			errors.push('Email is required.');
-		} else if (!/^\w+([\. -]?\w+)*@\w+([\. -]?\w+)*\.\w{2,}$/.test(email)) {
-			errors.push('Invalid email format.');
-		}
+  // Cek jika username dan password valid
+  if (!validateUsername(username) || !validatePassword(password)) {
+    return false;
+  }
 
-		if (password === '') {
-			errors.push('Password is required.');
-		} else if (password.length < 8) {
-			errors.push('Password must be at least 8 characters long.');
-		}
+  // Login berhasil
+  return true;
+}
 
-		if (confirmPassword === '') {
-			errors.push('Confirm password is required.');
-		} else if (confirmPassword !== password) {
-			errors.push('Passwords must match.');
-		}
+function validateUsername(username) {
+  // Cek jika username hanya terdiri dari huruf dan angka
+  if (!/^[a-zA-Z0-9]+$/.test(username)) {
+    return false;
+  }
 
-		if (errors.length > 0) {
-			alert(errors.join('\n'));
-			return false;
-		} else {
-			return true;
-		}
-	}
+  // Cek jika panjang username maksimal 20 karakter
+  if (username.length > 20) {
+    return false;
+  }
 
-	function validatePassword() {
-		var password = document.getElementById('password').value;
-		var confirmPassword = document.getElementById('confirmPassword').value;
+  // Username valid
+  return true;
+}
 
-		var errorElement = document.getElementById('confirmPasswordError');
+function validateEmail(email) {
+  // Cek jika E-Mail hanya terdiri dari huruf dan angka
+  if (!/^[a-zA-Z0-9]+$/.test(email)) {
+    return false;
+  }
 
-		if (confirmPassword !== password) {
-			errorElement.textContent = 'Passwords must match.';
-		} else {
-			errorElement.textContent = '';
-		}
-	}
+  // E-Mail valid
+  return true;
+}
+
+function validatePassword(password) {
+  // Cek jika password memiliki setidaknya 8 karakter
+  if (password.length < 8) {
+    return false;
+  }
+
+  // Cek jika password mengandung setidaknya satu huruf besar
+  if (!/[A-Z]/.test(password)) {
+    return false;
+  }
+
+  // Cek jika password mengandung setidaknya satu angka
+  if (!/[0-9]/.test(password)) {
+    return false;
+  }
+
+  // Password valid
+  return true;
+}
 </script>
 
 <!-- Required Js -->
